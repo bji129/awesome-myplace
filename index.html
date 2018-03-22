@@ -259,6 +259,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/22/决策树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记得则">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/22/决策树/" itemprop="url">决策树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T11:01:10+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>风要起落，人要浮沉</p>
+<h3 id="Bagging-amp-Boosting的区别"><a href="#Bagging-amp-Boosting的区别" class="headerlink" title="Bagging &amp; Boosting的区别"></a>Bagging &amp; Boosting的区别</h3><p>Bagging和Boosting的区别：</p>
+<ol>
+<li>样本选择上：<br>++ Bagging：训练集是在原始集中有放回选取的，从原始集中选出的各轮训练集之间是独立的。<br>++ Boosting：每一轮的训练集不变，只是训练集中每个样例在分类器中的权重发生变化。而权值是根据上一轮的分类结果进行调整。</li>
+<li>样例权重：<br>++ Bagging：使用均匀取样，每个样例的权重相等<br>++ Boosting：根据错误率不断调整样例的权值，错误率越大则权重越大。</li>
+<li>预测函数：<br>++ Bagging：所有预测函数的权重相等。<br>++ Boosting：每个弱分类器都有相应的权重，对于分类误差小的分类器会有更大的权重。</li>
+<li>并行计算：<br>++ Bagging：各个预测函数可以并行生成<br>++ Boosting：各个预测函数只能顺序生成，因为后一个模型参数需要前一轮模型的结果。</li>
+</ol>
+<p>下面是将决策树与这些算法框架进行结合所得到的新的算法：<br>+++ Bagging + 决策树 = 随机森林<br>+++ AdaBoost + 决策树 = 提升树<br>+++ Gradient Boosting + 决策树 = GBDT</p>
+<h3 id="No-pain-No-gain-Then-paining"><a href="#No-pain-No-gain-Then-paining" class="headerlink" title="No pain, No gain, Then paining"></a>No pain, No gain, Then paining</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/19/贫穷限制了我的想象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -345,14 +473,8 @@
 </ol>
 <h2 id="SVM-Support-Vector-Machine-指的是支持向量机"><a href="#SVM-Support-Vector-Machine-指的是支持向量机" class="headerlink" title="SVM(Support Vector Machine)指的是支持向量机"></a>SVM(Support Vector Machine)指的是支持向量机</h2><ol>
 <li>它是针对线性可分情况进行分析</li>
-<li>它基于结构风险最小化理论之上在特征空间中构建最优超平面<br>选择不同的核函数，可以生成不同的SVM，常用的核函数有以下4种：</li>
+<li>它基于结构风险最小化理论之上在特征空间中构建最优超平面<br>选择不同的核函数，可以生成不同的SVM，常用的核函数有以下4种：<br>++ 线性核函数K(x,y)=x·y；<br>++ 多项式核函数K(x,y)=[(x·y)+1]^d；<br>++ 高斯：径向基函数K(x,y)=exp(-|x-y|^2/d^2）<br>++ 二层神经网络核函数K(x,y)=tanh(a(x·y)+b）．</li>
 </ol>
-<ul>
-<li>线性核函数K(x,y)=x·y；</li>
-<li>多项式核函数K(x,y)=[(x·y)+1]^d；</li>
-<li>高斯：径向基函数K(x,y)=exp(-|x-y|^2/d^2）</li>
-<li>二层神经网络核函数K(x,y)=tanh(a(x·y)+b）．</li>
-</ul>
 <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>是利用数理统计中回归分析，来确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法，运用十分广泛。<br>其表达形式为y = w’x+e，e为误差服从均值为0的正态分布。<br>在统计学中，线性回归(Linear Regression)是利用称为线性回归方程的最小平方函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。<br>sum_sq=sum((y-ybest).^2);<br>拟合方程：一般来说，线性回归都可以通过最小二乘法求出其方程，可以计算出对于y=bx+a的直线。</p>
 <p>线性回归有很多实际用途。分为以下两大类：</p>
 <ul>
@@ -763,133 +885,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/12/三十多了/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得则">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/三十多了/" itemprop="url">三十多了</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T14:18:29+08:00">
-                2018-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这个是我第一次用markdown来写日记，写的不好大家也就将就看吧！</p>
-<h3 id="没做错什么，就错了"><a href="#没做错什么，就错了" class="headerlink" title="没做错什么，就错了"></a>没做错什么，就错了</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这些年一直都是在上升期，哪谁还考虑接下来会怎样？</span><br><span class="line">不用考虑人都在进步，哪就是尽心尽力的工作。</span><br><span class="line">工作就形成自己独有的风格，同时也塑造自己的人生性格。</span><br><span class="line"></span><br><span class="line">人长大，慢慢就变得冷漠，以及对凡事的无动于衷</span><br><span class="line">发现的时候谁都无能为力去改变了，所以真可怕</span><br></pre></td></tr></table></figure>
-<h3 id="得意的时候就是失意的开始"><a href="#得意的时候就是失意的开始" class="headerlink" title="得意的时候就是失意的开始"></a>得意的时候就是失意的开始</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">记得拿手好戏依然都鸵鸟一样，实际的情况都不想去认识。</span><br><span class="line">破败的一亩三分田其实是保存不到最后的。</span><br></pre></td></tr></table></figure>
-<h3 id="那该怎么办？"><a href="#那该怎么办？" class="headerlink" title="那该怎么办？"></a>那该怎么办？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一直在寻找，停歇的接口是永远不完的备选方案，</span><br><span class="line">或者是死猪不怕开水烫的逻辑，希冀生活不断赐予不期然的惊喜！</span><br></pre></td></tr></table></figure>
-<p>我的一些材料: <a href="http://jideze.com/">官网链接</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -933,7 +935,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
