@@ -259,6 +259,250 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/16/三层/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记得则">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/16/三层/" itemprop="url">三层</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-16T16:18:29+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据+业务+界面</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">*TL;DR80</span></span><br><span class="line"><span class="string">Separates presentation, application processing, and data management functions.</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Data(object):</span><br><span class="line">    <span class="string">""</span><span class="string">" Data Store Class "</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">    products = &#123;</span><br><span class="line">        <span class="string">'milk'</span>: &#123;<span class="string">'price'</span>: 1.50, <span class="string">'quantity'</span>: 10&#125;,</span><br><span class="line">        <span class="string">'eggs'</span>: &#123;<span class="string">'price'</span>: 0.20, <span class="string">'quantity'</span>: 100&#125;,</span><br><span class="line">        <span class="string">'cheese'</span>: &#123;<span class="string">'price'</span>: 2.00, <span class="string">'quantity'</span>: 10&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    def __get__(self, obj, klas):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"(Fetching from Data Store)"</span>)</span><br><span class="line">        <span class="built_in">return</span> &#123;<span class="string">'products'</span>: self.products&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BusinessLogic(object):</span><br><span class="line">    <span class="string">""</span><span class="string">" Business logic holding data store instances "</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">    data = Data()</span><br><span class="line"></span><br><span class="line">    def product_list(self):</span><br><span class="line">        <span class="built_in">return</span> self.data[<span class="string">'products'</span>].keys()</span><br><span class="line"></span><br><span class="line">    def product_information(self, product):</span><br><span class="line">        <span class="built_in">return</span> self.data[<span class="string">'products'</span>].get(product, None)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Ui(object):</span><br><span class="line">    <span class="string">""</span><span class="string">" UI interaction class "</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.business_logic = BusinessLogic()</span><br><span class="line"></span><br><span class="line">    def get_product_list(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'PRODUCT LIST:'</span>)</span><br><span class="line">        <span class="keyword">for</span> product <span class="keyword">in</span> self.business_logic.product_list():</span><br><span class="line">            <span class="built_in">print</span>(product)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">    def get_product_information(self, product):</span><br><span class="line">        product_info = self.business_logic.product_information(product)</span><br><span class="line">        <span class="keyword">if</span> product_info:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'PRODUCT INFORMATION:'</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'Name: &#123;0&#125;, Price: &#123;1:.2f&#125;, Quantity: &#123;2:&#125;'</span>.format(</span><br><span class="line">                product.title(), product_info.get(<span class="string">'price'</span>, 0),</span><br><span class="line">                product_info.get(<span class="string">'quantity'</span>, 0)))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'That product "&#123;0&#125;" does not exist in the records'</span>.format(</span><br><span class="line">                product))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    ui = Ui()</span><br><span class="line">    ui.get_product_list()</span><br><span class="line">    ui.get_product_information(<span class="string">'cheese'</span>)</span><br><span class="line">    ui.get_product_information(<span class="string">'eggs'</span>)</span><br><span class="line">    ui.get_product_information(<span class="string">'milk'</span>)</span><br><span class="line">    ui.get_product_information(<span class="string">'arepas'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="今天不努力-明天就无力！"><a href="#今天不努力-明天就无力！" class="headerlink" title="今天不努力 明天就无力！"></a>今天不努力 明天就无力！</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/16/奇怪的理论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记得则">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/16/奇怪的理论/" itemprop="url">奇怪的理论</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-16T12:18:29+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Redis是一个简单数据管理存放的好的方案<br>如果使用Selenium + Python + Redis应该是一个很好的数据驱动的自动化解决方案</p>
+<h3 id="继承或者实现测试驱动的框架"><a href="#继承或者实现测试驱动的框架" class="headerlink" title="继承或者实现测试驱动的框架"></a>继承或者实现测试驱动的框架</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">继承或者实现测试驱动的框架</span><br><span class="line">unit/文件遍历读取所有测试用例</span><br><span class="line">每个测试用例采取页面类+数据驱动步骤性执行，保证每个测试用例的独立执行性</span><br><span class="line">Common lib帮助抽取公用操作或者函数</span><br><span class="line">加入多线程支持多个浏览器同步执行、或者通过Jenkins多台服务器实现</span><br><span class="line">采用浏览器方式访问 + 邮件推送出错清醒</span><br></pre></td></tr></table></figure>
+<h3 id="封装页面对象包括页面"><a href="#封装页面对象包括页面" class="headerlink" title="封装页面对象包括页面"></a>封装页面对象包括页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进入断言: 页面标题 + url</span><br><span class="line">所有输入控件的判断： 是否有数据驱动的逻辑判断 + 页面其他控件逻辑判断</span><br><span class="line">页面提交get/post方法</span><br></pre></td></tr></table></figure>
+<h3 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">控件信息以ID来唯一定位，否则在页面层进行维护CSS样式维护</span><br><span class="line">如果数据存在则该控件有效输入</span><br><span class="line">原则上单个测试用例使用一份测试数据，如果多次执行需要多复制同名文件进行编辑修改</span><br></pre></td></tr></table></figure>
+<h2 id="生活本不易-你我共努力！"><a href="#生活本不易-你我共努力！" class="headerlink" title="生活本不易 你我共努力！"></a>生活本不易 你我共努力！</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/12/saysomething/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -544,7 +788,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -557,7 +801,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
