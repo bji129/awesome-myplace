@@ -259,6 +259,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/23/Python库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记得泽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/23/Python库/" itemprop="url">Python库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T14:01:10+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一个人自信自足，那干什么事情至少看起来都是顺的。</p>
+<p>昨天跑步了，感觉有点累，但是在一小段时间里人感觉很舒服。<br>这不同于放松，也不同于兴奋，更不同于刺激，如果真要一个词去描述：通透</p>
+<h3 id="一直最近都在看的库："><a href="#一直最近都在看的库：" class="headerlink" title="一直最近都在看的库："></a>一直最近都在看的库：</h3><p><strong> Scipy： 机器学习
+</strong> Numpy：数学计算<br><strong> Moviepy vs. Mayavi: 动态图片或者视频
+</strong> Matplotlib：图表绘画<br>** Image: png图片处理</p>
+<h3 id="简单例子：PE-θ-0-θ-1AT-θ-2V-θ-3AP-θ-4RH"><a href="#简单例子：PE-θ-0-θ-1AT-θ-2V-θ-3AP-θ-4RH" class="headerlink" title="简单例子：PE=θ_0+θ_1AT+θ_2V+θ_3AP+θ_4RH"></a>简单例子：PE=θ_0+θ_1<em>AT+θ_2</em>V+θ_3<em>AP+θ_4</em>RH</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">from sklearn import datasets, linear_model</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(&apos;.\Folds5x2_pp.csv&apos;)</span><br><span class="line">X = data[[&apos;AT&apos;, &apos;V&apos;, &apos;AP&apos;, &apos;RH&apos;]]</span><br><span class="line">y = data[[&apos;PE&apos;]]</span><br><span class="line"></span><br><span class="line"># 4:1区分培训与测试数据，并进行训练，得到各参数值</span><br><span class="line">from sklearn.cross_validation import train_test_split</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)</span><br><span class="line"></span><br><span class="line">from sklearn.linear_model import LinearRegression</span><br><span class="line">linreg = LinearRegression()</span><br><span class="line">linreg.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line">print(linreg.intercept_)</span><br><span class="line">print(linreg.coef_)</span><br><span class="line"></span><br><span class="line"># 比较MSE, RMSE，选择其他参数模型如果值更小，可以测试去掉其他列做计算时得出结果较大</span><br><span class="line">from sklearn import metrics</span><br><span class="line">y_pred = linreg.predict(X_test)</span><br><span class="line">print(&quot;MSE:&quot;,metrics.mean_squared_error(y_test, y_pred))</span><br><span class="line">print(&quot;RMSE:&quot;,np.sqrt(metrics.mean_squared_error(y_test, y_pred)))</span><br><span class="line"></span><br><span class="line"># 图形展示</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(y, predicted)</span><br><span class="line">ax.plot([y.min(), y.max()], [y.min(), y.max()], &apos;k--&apos;, lw=4)</span><br><span class="line">ax.set_xlabel(&apos;Measured&apos;)</span><br><span class="line">ax.set_ylabel(&apos;Predicted&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="不创造知识，我只是知识的搬运工"><a href="#不创造知识，我只是知识的搬运工" class="headerlink" title="不创造知识，我只是知识的搬运工"></a>不创造知识，我只是知识的搬运工</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/22/决策树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -761,130 +886,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/03/12/saysomething/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/saysomething/" itemprop="url">saysomething</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T16:14:28+08:00">
-                2018-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="作图工具"><a href="#作图工具" class="headerlink" title="作图工具"></a>作图工具</h1><h3 id="D3-https-d3js-org"><a href="#D3-https-d3js-org" class="headerlink" title="D3[https://d3js.org/]"></a>D3[<a href="https://d3js.org/]" target="_blank" rel="noopener">https://d3js.org/]</a></h3><h3 id="Chartjs-http-www-chartjs-org"><a href="#Chartjs-http-www-chartjs-org" class="headerlink" title="Chartjs[http://www.chartjs.org/]"></a>Chartjs[<a href="http://www.chartjs.org/]" target="_blank" rel="noopener">http://www.chartjs.org/]</a></h3><h3 id="chartist-js-gionkunz-github-io-chartist-js"><a href="#chartist-js-gionkunz-github-io-chartist-js" class="headerlink" title="chartist-js[gionkunz.github.io/chartist-js/]"></a>chartist-js[gionkunz.github.io/chartist-js/]</h3><h3 id="canvas-https-developer-mozilla-org-en-US-docs-Web-API-Canvas-API"><a href="#canvas-https-developer-mozilla-org-en-US-docs-Web-API-Canvas-API" class="headerlink" title="canvas[https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"></a>canvas[<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API</a></h3><p><canvas id="canvas"></canvas></p>
-<div style="display:none;"><br>  <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="300" height="227"><br></div>
-
-<p>var canvas = document.getElementById(‘canvas’);<br>var ctx = canvas.getContext(‘2d’);<br>var image = document.getElementById(‘source’);</p>
-<p>ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -935,7 +936,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -948,7 +949,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
