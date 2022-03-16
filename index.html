@@ -1,1155 +1,441 @@
-<!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>七宝外国语小学一(2)班课表</title>
+    <style>
 
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+        }
 
+        #coursesTable {
+            padding: 15px 10px;
+        }
 
+        .Courses-head {
+            background-color: #edffff;
+        }
 
+        .Courses-head > div {
+            text-align: center;
+            font-size: 16px;
+            line-height: 35px;
+        }
 
+        .left-hand-TextDom, .Courses-head {
+            background-color: #f2f6f7;
+        }
 
+        .Courses-leftHand {
+            background-color: #f2f6f7;
+            font-size: 12px;
+        }
 
+        .Courses-leftHand .left-hand-index {
+            color: #9c9c9c;
+            margin-bottom: 4px !important;
+        }
 
+        .Courses-leftHand .left-hand-name {
+            color: #666;
+        }
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+        .Courses-leftHand p {
+            text-align: center;
+            font-weight: 900;
+        }
 
+        .Courses-head > div {
+            border-left: none !important;
+        }
 
+        .Courses-leftHand > div {
+            padding-top: 5px;
+            border-bottom: 1px dashed rgb(219, 219, 219);
+        }
 
+        .Courses-leftHand > div:last-child {
+            border-bottom: none !important;
+        }
 
+        .left-hand-TextDom, .Courses-head {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
 
+        .Courses-content > ul {
+            border-bottom: 1px dashed rgb(219, 219, 219);
+            box-sizing: border-box;
+        }
 
+        .Courses-content > ul:last-child {
+            border-bottom: none !important;
+        }
 
+        .highlight-week {
+            color: #02a9f5 !important;
+            font-weight: bold;
+        }
 
+        .Courses-content li {
+            text-align: center;
+            color: #666666;
+            font-size: 16px;
+            line-height: 50px;
+        }
 
+        .Courses-content li span {
+            padding: 6px 2px;
+            box-sizing: border-box;
+            line-height: 18px;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-all;
+            cursor: pointer;
+        }
 
+        .grid-active {
+            z-index: 9999;
+        }
 
+        .grid-active span {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<div align="center">七宝外国语小学一(2)班课表</div>
 
+<div id="coursesTable"></div>
+<div align="center" id="times"> </div>
+<script>
+(function(global) {
+  var Timetables = function(option) {
+    this.el = document.querySelector(option.el);
+    this.Timetables = option.timetables || [];
+    this.week = option.week || [];
+    this.merge = typeof option.merge === 'boolean' ? option.merge : true;
+    this.TimetableType = option.timetableType || [];
+    this.leftHandText = [];
+    this.highlightWeek = option.highlightWeek || '';
+    this.gridOnClick = typeof option.gridOnClick === 'function' ? option.gridOnClick : undefined;
+    var styles = option.styles || {};
+    this.leftHandWidth = styles.leftHandWidth || 60;
+    this.Gheight = styles.Gheight || 48;
+    this.defaultPalette = ['#808A87', '#FF9912', '#4169E1', '#385E0F', '#082E54',  '#9C661F', '#8A2BE2', '#4adbc3'];
+    //this.defaultPalette = ['#808A87', '#FF9912', '#4169E1', '#385E0F', '#082E54',  '#9C661F', '#8A2BE2', '#4adbc3'];
+    this.palette = (typeof styles.palette === 'boolean' && !styles.palett) ? false : (styles.palette || []).concat(this.defaultPalette)
+    this._init();
+  };
+  Timetables.prototype = {
+    _init: function(option) {
+      var option = option || {};
+      var style = option.styles || {};
+      var gridOnClick = option.gridOnClick || this.gridOnClick;
+      var merge = typeof option.merge === 'boolean' ? option.merge : this.merge;
+      var highlightWeek = option.highlightWeek || this.highlightWeek;
+      var leftHandText = this.leftHandText;
+      var leftHandWidth = style.leftHandWidth || this.leftHandWidth;
+      var Gheight = style.Gheight || this.Gheight;
+      var palette;
+      if (typeof style.palette === 'boolean' && !style.palette) {
+        palette = false
+      } else {
+        palette = style.palette ? (style.palette || []).concat(this.defaultPalette) : this.palette;
+      }
 
+      var Timetables = option.timetables || this.Timetables;
+      var week = option.week || this.week;
+      var TimetableType = JSON.parse(JSON.stringify(option.timetableType || this.TimetableType));
+      var deepCopyTimetableType = option.timetableType || this.TimetableType;
+      var TimetableTypeLength = TimetableType.length;
+      Timetables.forEach(function (item, index) {
+        if(item.length < TimetableTypeLength) {
+          for (var i = 0; i < TimetableTypeLength - item.length; i ++) {
+            item.push('');
+          }
+        }
+      });
+      if (option.setNewOption) {
+        this.el.removeChild(this.el.childNodes[0]);
+      }
+      var courseWrapper = document.createElement('div');
+      courseWrapper.id = 'courseWrapper';
+      courseWrapper.style.position = 'relative';
+      courseWrapper.style.paddingLeft = leftHandWidth + 'px';
+      courseWrapper.style.border = '1px solid #dbdbdb';
 
+      TimetableType.forEach(function (item, index) {
+        item.unshift(index + 1)
+      });
 
+      var leftHand = document.createElement("div");
+      leftHand.className = 'Courses-leftHand';
+      leftHand.style.position = 'absolute';
+      leftHand.style.left = 0;
+      leftHand.style.top = 0;
+      leftHand.style.width = leftHandWidth + 'px';
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+      var timetable = Timetables[0].map(function (v, i) {
+        return [];
+      });
+      timetable.forEach(function (item, index) {
+        Timetables.forEach(function (val, i) {
+          timetable[index].push(val[index]);
+        });
+      });
 
+      var listMerge = [];
+      if (merge) {
+        Timetables.forEach(function(list, i) {
+          if (!listMerge[i]){
+            listMerge[i] = [];
+          }
+          list.forEach(function(item, index) {
+            if (!index) {
+              return listMerge[i].push({name: item, length: 1});
+            }
+            if (item === (listMerge[i][index-1] ||{}).name && item) {
+              var sameIndex = (listMerge[i][index-1] ||{}).sameIndex;
+              if (sameIndex || sameIndex === 0) {
+                listMerge[i][sameIndex].length ++;
+                return listMerge[i].push({name: item, length: 0, sameIndex: sameIndex});
+              }
+              listMerge[i][index-1].length ++;
+              return listMerge[i].push({name: item, length: 0, sameIndex: index-1});
+            } else {
+              return listMerge[i].push({name: item, length: 1});
+            }
+          });
+        });
+      }
 
+      var head = document.createElement("div");
+      head.style.overflow = 'hidden';
+      head.className = 'Courses-head';
+      week.forEach(function (item, index) {
+        var weekItem = document.createElement("div");
+        var highlightClass = highlightWeek === (index + 1) ? 'highlight-week ' : '';
+        weekItem.className = highlightClass + 'Courses-head-' + (index + 1);
+        weekItem.innerText = item;
+        weekItem.style.cssFloat = 'left';
+        weekItem.style.boxSizing = 'border-box';
+        weekItem.style.whiteSpace = 'nowrap';
+        weekItem.style.width = 100/week.length + '%'
+        head.appendChild(weekItem);
+      })
+      courseWrapper.appendChild(head);
 
+      var courseListContent = document.createElement("div");
+      courseListContent.className = 'Courses-content';
+      var paletteIndex = 0;
+      timetable.forEach(function (values, index) {
+        var courseItems = document.createElement("ul");
+        courseItems.style.listStyle = 'none';
+        courseItems.style.padding = '0px';
+        courseItems.style.margin = '0px';
+        courseItems.style.minHeight = Gheight + 'px';
 
+        courseItems.className = 'stage_' + ((TimetableType[0] || [])[0] || 'none');
+        -- (TimetableType[0] || [])[2];
+        if (!((TimetableType[0] || [])[2])) {
+          TimetableType.shift();
+        }
+        values.forEach(function (item, i) {
+          if (i > week.length -1) return;
+          var courseItem = document.createElement("li");
+          courseItem.style.cssFloat = 'left';
+          courseItem.style.width = 100/week.length + '%';
+          courseItem.style.height = Gheight + 'px';
+          courseItem.style.boxSizing = 'border-box';
+          courseItem.style.position = 'relative';
+          if (merge && listMerge[i][index].length > 1) {
+            var mergeDom = document.createElement("span");
+            mergeDom.style.position = 'absolute';
+            mergeDom.style.zIndex = 9;
+            mergeDom.style.width = '100%';
+            mergeDom.style.height = Gheight * listMerge[i][index].length + 'px';
+            mergeDom.style.left = 0;
+            mergeDom.style.top = 0;
+            if (palette) {
+              mergeDom.style.backgroundColor = palette[paletteIndex];
+              mergeDom.style.color = '#fff';
+              paletteIndex ++;
+              if (paletteIndex >= palette.length) {
+                paletteIndex = 0;
+              }
+            }
+            mergeDom.innerText = listMerge[i][index].name;
+            mergeDom.className = 'course-hasContent'
+            courseItem.appendChild(mergeDom);
+          } else {
+            if (merge && listMerge[i][index].length === 0) {
+              courseItem.innerText = '';
+            } else {
+              if (item && palette) {
+                courseItem.style.backgroundColor = palette[paletteIndex];
+                courseItem.style.color = '#fff';
+                paletteIndex ++;
+                if (paletteIndex >= palette.length) {
+                  paletteIndex = 0;
+                }
+              } else if (item) {
+                courseItem.className = 'course-hasContent'
+              }
+              courseItem.innerText = item || '';
+            }
+          }
 
+          courseItem.onclick = function (e) {
+            var allList = document.querySelectorAll('.Courses-content ul li').forEach(function (v, i) {
+              v.classList.remove('grid-active');
+            })
+            this.className = 'grid-active';
+            var info = {
+              name:item,
+              week:   week[i],
+              index: index + 1,
+              length: merge ? listMerge[i][index].length : 1
+            };
+            gridOnClick && gridOnClick(info);
+          };
+          courseItems.appendChild(courseItem);
+        });
+        courseListContent.appendChild(courseItems);
+      })
+      courseWrapper.appendChild(courseListContent);
+      courseWrapper.appendChild(leftHand);
+      this.el.appendChild(courseWrapper);
 
+      var courseItemDomHeight = (document.querySelector('.stage_1 li') || document.querySelector('.stage_none li')).offsetHeight;
+      var coursesHeadDomHeight = document.querySelector('.Courses-head').offsetHeight;
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+      var leftHandTextDom = document.createElement("div");
+      leftHandTextDom.className = 'left-hand-TextDom';
+      leftHandTextDom.style.height = coursesHeadDomHeight + 'px';
+      leftHandTextDom.style.boxSizing = 'border-box';
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+      leftHandText.forEach(function (item) {
+        var leftHandTextItem = document.createElement('div');
+        leftHandTextItem.innerText = item;
+        leftHandTextDom.appendChild(leftHandTextItem);
+      })
+      leftHand.appendChild(leftHandTextDom);
 
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="记得泽">
-<meta property="og:url" content="http://jideze.com/index.html">
-<meta property="og:site_name" content="记得泽">
-<meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记得泽">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
+      deepCopyTimetableType.forEach(function (item, index) {
+        var handItem = document.createElement("div");
+        handItem.style.width = '100%';
+        handItem.style.height = courseItemDomHeight * item[1] + 'px';
+        handItem.style.boxSizing = 'border-box';
+        if (typeof item[0] === 'object') {
+           for (var v in item[0]) {
+             var handItemInner = document.createElement('p');
+             handItemInner.innerText = item[0][v];
+             handItemInner.style.margin = '0px';
+             handItemInner.className = 'left-hand-' + v;
+             handItem.appendChild(handItemInner);
+           }
+        } else {
+          handItem.innerText = item[0] || '';
+        }
+        handItem.className = 'left-hand-' + (index + 1);
+        leftHand.appendChild(handItem);
+      });
     },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    setOption: function(option) {
+      (option || {}).setNewOption = true;
+      this._init(option);
     }
   };
-</script>
-
-
-
-  <link rel="canonical" href="http://jideze.com/"/>
-
-
-
-
-
-  <title>记得泽</title>
-  
-
-
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">记得泽</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">随着时间往前走</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-首页">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-分类">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-历史">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            历史
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-关于我">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于我
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/05/29/霉运/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/29/霉运/" itemprop="url">霉运</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-29T15:36:10+08:00">
-                2018-05-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="需要了解沟通的内容"><a href="#需要了解沟通的内容" class="headerlink" title="需要了解沟通的内容"></a>需要了解沟通的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">中秋刚过，天气也变得清爽很多</span><br><span class="line"></span><br><span class="line">然后最近还是不太顺利，先是小朋友生了一周的病，后面老婆也一直咳嗽。</span><br><span class="line"></span><br><span class="line">虽然在苏州度过了一个很开心的中秋节，逛了留园、寒山寺、盘门，也在观前街吃了一顿牛排，小朋友的过敏是发的厉害了，一直吵闹。</span><br><span class="line"></span><br><span class="line">中秋节的晚上是三姐家请的客，吃的很丰盛，人也很全，大家今年都过得很好，这个是非常开心地事了，到了九点半才赶回上海。</span><br></pre></td></tr></table></figure>
-<h3 id="错误往往是财富的开始"><a href="#错误往往是财富的开始" class="headerlink" title="错误往往是财富的开始"></a>错误往往是财富的开始</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">除却中秋晚上车又在苏州被贴，今天早上又破财了，手机又被摔了</span><br><span class="line"></span><br><span class="line">破相了下场又得需要我多花银子去换了，目前不影响使用，让我再犹豫犹豫吧。</span><br></pre></td></tr></table></figure>
-<h3 id="金融与安全"><a href="#金融与安全" class="headerlink" title="金融与安全"></a>金融与安全</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">变化是痛苦的，对于我来说也是喜欢安逸或者规律的工作，结果就是不知道后续如何怎么处理。</span><br><span class="line"></span><br><span class="line">今天学到一点，与大部分人的沟通时，其实着重谈和他财务和安全相关的信息往往更能吸引对方的注意。</span><br></pre></td></tr></table></figure>
-<h3 id="好久没说谎话了，所以不会发现谎话比真话更有作用！"><a href="#好久没说谎话了，所以不会发现谎话比真话更有作用！" class="headerlink" title="好久没说谎话了，所以不会发现谎话比真话更有作用！"></a>好久没说谎话了，所以不会发现谎话比真话更有作用！</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/05/29/彷徨/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/29/彷徨/" itemprop="url">彷徨</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-29T15:36:10+08:00">
-                2018-05-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="不查则以一查惊人，望不到边的惊恐"><a href="#不查则以一查惊人，望不到边的惊恐" class="headerlink" title="不查则以一查惊人，望不到边的惊恐"></a>不查则以一查惊人，望不到边的惊恐</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">总感觉时间如梭，不舍昼夜的奔流而过</span><br><span class="line">如果不用回头望，也不会知道自己走了有多远</span><br><span class="line"></span><br><span class="line">刚刚查看了几分同事的档案，发现差距不是一般的大，</span><br><span class="line">有的人已经比我小了整整10岁，12岁就一个年轮了，</span><br><span class="line">所以我的外甥女一样大小的人已经在企业中慢慢成长并站稳脚跟了。</span><br></pre></td></tr></table></figure>
-<h3 id="最近我在寻求改变"><a href="#最近我在寻求改变" class="headerlink" title="最近我在寻求改变"></a>最近我在寻求改变</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一直想打破常规，好多之前做不到或者不敢做的，一项项都是努力尝试突破，并努力重塑一个不一样的我</span><br><span class="line"></span><br><span class="line">路漫漫其修远兮，所以用脚掌来丈量我的人生应该是比较成熟的想法</span><br><span class="line">也难免会有那种患得患失，或者被别人超越的那种彷徨与恐慌。</span><br></pre></td></tr></table></figure>
-<h3 id="人不能总是空虚的"><a href="#人不能总是空虚的" class="headerlink" title="人不能总是空虚的"></a>人不能总是空虚的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">忙的时候想闲，闲的时候盼忙</span><br><span class="line">人都是这样不满足，占有VS.追求那个才是人生的真谛，</span><br><span class="line">可能在人生终结的一刹那就会有了答案。</span><br></pre></td></tr></table></figure>
-<h3 id="来来回回、兜兜转转"><a href="#来来回回、兜兜转转" class="headerlink" title="来来回回、兜兜转转"></a>来来回回、兜兜转转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原地踏步，裹足不前要不得</span><br><span class="line">不然那不是tiger，而是horse，还是wooden的。</span><br></pre></td></tr></table></figure>
-<h3 id="吓死我了，赶紧喝了口水填饱肚子"><a href="#吓死我了，赶紧喝了口水填饱肚子" class="headerlink" title="吓死我了，赶紧喝了口水填饱肚子"></a>吓死我了，赶紧喝了口水填饱肚子</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/05/17/别玩我/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/17/别玩我/" itemprop="url">别玩我</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T13:12:10+08:00">
-                2018-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="这个世界不安分"><a href="#这个世界不安分" class="headerlink" title="这个世界不安分"></a>这个世界不安分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">所有人考虑事情的角度都围绕着自身，</span><br><span class="line">人们把这个叫做自私，从而变成了贬义词。</span><br><span class="line"></span><br><span class="line">其实凡事都正反，也有内外，要么由内而外，要么由内而外，</span><br><span class="line">所以自私本身是没有错，并且是也由己及他的必然结果。</span><br></pre></td></tr></table></figure>
-<h3 id="我该如何面对"><a href="#我该如何面对" class="headerlink" title="我该如何面对"></a>我该如何面对</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">他强任他强，清风拂山岗。</span><br><span class="line">不考虑得舍，或者压根忘记这本身存在的道理，方是真的放下了。</span><br></pre></td></tr></table></figure>
-<h3 id="宿命论的终结"><a href="#宿命论的终结" class="headerlink" title="宿命论的终结"></a>宿命论的终结</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不知道从什么时候开始，命运开始在我的生活中越来越多的出现，</span><br><span class="line">在顺利成章之后，总觉得是命运的安排，</span><br><span class="line">而失意的时候，也觉得是命运在和我开着玩笑，</span><br><span class="line">不然何以解释这样的先后以及那样的因果。</span><br></pre></td></tr></table></figure>
-<h3 id="人喜欢挣扎是没错的"><a href="#人喜欢挣扎是没错的" class="headerlink" title="人喜欢挣扎是没错的"></a>人喜欢挣扎是没错的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">喜欢折腾的人容易受伤，然后生活确实最为丰富多彩，</span><br><span class="line">大凡成功的人士，都是几经波折方大放异彩，平白人生多了资本。</span><br><span class="line"></span><br><span class="line">在慨叹命运作弄，或者悲叹生活不易的时候，</span><br><span class="line">其实安逸了太久，以及对于未知的恐惧，让我们明白，</span><br><span class="line">这就是世界给我们的反馈。</span><br></pre></td></tr></table></figure>
-<h3 id="我的帅如果不是优点，哪么就是缺点！"><a href="#我的帅如果不是优点，哪么就是缺点！" class="headerlink" title="我的帅如果不是优点，哪么就是缺点！"></a>我的帅如果不是优点，哪么就是缺点！</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/05/10/网站部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/网站部署/" itemprop="url">网站部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T13:12:10+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="LNMP-项目中有用，CentOS"><a href="#LNMP-项目中有用，CentOS" class="headerlink" title="LNMP - 项目中有用，CentOS"></a>LNMP - 项目中有用，CentOS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LNMP一键安装包是一个用Linux Shell编写的可以为CentOS/RHEL/Fedora/Aliyun/Amazon、</span><br><span class="line">Debian/Ubuntu/Raspbian/Deepin/Mint Linux VPS或独立主机安装LNMP(Nginx/MySQL/PHP)、</span><br><span class="line">LNMPA(Nginx/MySQL/PHP/Apache)、LAMP(Apache/MySQL/PHP)生产环境的Shell程序。</span><br><span class="line">[安装步骤]: https://lnmp.org/install.html</span><br></pre></td></tr></table></figure>
-<h3 id="LAMP-没用过，不过看起来安装更简单"><a href="#LAMP-没用过，不过看起来安装更简单" class="headerlink" title="LAMP - 没用过，不过看起来安装更简单"></a>LAMP - 没用过，不过看起来安装更简单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LAMP 一键安装包是一个用 Linux Shell 编写的可以为 CentOS/Debian/Ubuntu 系统的 VPS </span><br><span class="line">或服务器安装 LAMP(Linux + Apache + MySQL/MariaDB/Percona + PHP) 生产环境的 Shell 程序。</span><br><span class="line">包含一些可选安装组件如：ionCube Loaders、XCache、OPcache、memcached、Redis、GraphicsMagick、ImageMagick、Swoole 等。</span><br><span class="line">同时还有一些辅助脚本如：虚拟主机管理、Apache、MySQL/MariaDB/Percona、PHP 及 PhpMyAdmin 的升级等。</span><br><span class="line">[安装步骤]: https://lamp.sh/install.html</span><br></pre></td></tr></table></figure>
-<h3 id="XAMPP-这个是老早就比较熟悉的，在Windows下也支持蛮好，况且还是Apache-Friends"><a href="#XAMPP-这个是老早就比较熟悉的，在Windows下也支持蛮好，况且还是Apache-Friends" class="headerlink" title="XAMPP - 这个是老早就比较熟悉的，在Windows下也支持蛮好，况且还是Apache Friends"></a>XAMPP - 这个是老早就比较熟悉的，在Windows下也支持蛮好，况且还是Apache Friends</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XAMPP（Apache+MySQL+PHP+PERL）是一个功能强大的建站集成软件包。这个软件包原来的名字是 LAMPP，</span><br><span class="line">但是为了避免误解，最新的几个版本就改名为 XAMPP 了。</span><br><span class="line">[下载地址]: https://www.apachefriends.org/index.html</span><br></pre></td></tr></table></figure>
-<h3 id="Screen-宝贝，以前从来没想过远程断了如何继续会话，二！"><a href="#Screen-宝贝，以前从来没想过远程断了如何继续会话，二！" class="headerlink" title="Screen - 宝贝，以前从来没想过远程断了如何继续会话，二！"></a>Screen - 宝贝，以前从来没想过远程断了如何继续会话，二！</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line"># screen [-AmRvx -ls -wipe][-d &lt;作业名称&gt;][-h &lt;行数&gt;][-r &lt;作业名称&gt;][-s ][-S &lt;作业名称&gt;]</span><br><span class="line">参数说明</span><br><span class="line">-A 　将所有的视窗都调整为目前终端机的大小。</span><br><span class="line">-d &lt;作业名称&gt; 　将指定的screen作业离线。</span><br><span class="line">-h &lt;行数&gt; 　指定视窗的缓冲区行数。</span><br><span class="line">-m 　即使目前已在作业中的screen作业，仍强制建立新的screen作业。</span><br><span class="line">-r &lt;作业名称&gt; 　恢复离线的screen作业。</span><br><span class="line">-R 　先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。</span><br><span class="line">-s 　指定建立新视窗时，所要执行的shell。</span><br><span class="line">-S &lt;作业名称&gt; 　指定screen作业的名称。</span><br><span class="line">-v 　显示版本信息。</span><br><span class="line">-x 　恢复之前离线的screen作业。</span><br><span class="line">-ls或--list 　显示目前所有的screen作业。</span><br><span class="line">-wipe 　检查目前所有的screen作业，并删除已经无法使用的screen作业。</span><br><span class="line"></span><br><span class="line">分享链接 [https://blog.csdn.net/dyx810601/article/details/51454086]</span><br></pre></td></tr></table></figure>
-<h3 id="等待别人来认错，却不知道自己这是在犯错！"><a href="#等待别人来认错，却不知道自己这是在犯错！" class="headerlink" title="等待别人来认错，却不知道自己这是在犯错！"></a>等待别人来认错，却不知道自己这是在犯错！</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jideze.com/2018/05/04/大号青年/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="嵇金虎 - Brandon Ji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="记得泽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/04/大号青年/" itemprop="url">大号青年</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-04T11:12:10+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="搞了一个接口全是壳子"><a href="#搞了一个接口全是壳子" class="headerlink" title="搞了一个接口全是壳子"></a>搞了一个接口全是壳子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我真的是醉了，花架子也太过头了</span><br><span class="line"></span><br><span class="line">了解到开发这种伎俩的，只是返回信息而已，修改或者添加成功什么的都是假的，后台数据库啥都没有。</span><br></pre></td></tr></table></figure>
-<h3 id="加密这一套"><a href="#加密这一套" class="headerlink" title="加密这一套"></a>加密这一套</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">微信加密[https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_3]</span><br><span class="line">在线验证[https://pay.weixin.qq.com/wiki/tools/signverify/]</span><br></pre></td></tr></table></figure>
-<h3 id="忐忑的一周"><a href="#忐忑的一周" class="headerlink" title="忐忑的一周"></a>忐忑的一周</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">人约患得患失，说明他还拥有的不够多，所以无法做到大气磅礴</span><br><span class="line">对事物本身的发展规律，因果理论其实早就一生二、二生四平白展现</span><br><span class="line"></span><br><span class="line">不是不懂，却不愿意，所以来的消息会让你惊愕，没有也却让你期待不已</span><br></pre></td></tr></table></figure>
-<h3 id="明日又是周末，今天还是五四，初略了知道自己已经工作了十二个年头了。"><a href="#明日又是周末，今天还是五四，初略了知道自己已经工作了十二个年头了。" class="headerlink" title="明日又是周末，今天还是五四，初略了知道自己已经工作了十二个年头了。"></a>明日又是周末，今天还是五四，初略了知道自己已经工作了十二个年头了。</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">嵇金虎 - Brandon Ji</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">沪ICP备18003719号</span>
-
-  
-</div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+  if (typeof module !== 'undefined' && module.exports) module.exports = Timetables;
+  if (typeof define === 'function') define(function() { return Timetables; });
+  global.Timetables = Timetables;
+})(this);
+
+  var courseList = [
+    ['语文', '数学', '体育', '英语', '语文', '美术'],
+    ['语文', '数学', '体育', '语文', '音乐', '自然'],
+    ['语文', '道法', '体育', '英语', '语文', '自然'],
+    ['语文', '英语', '体育', '数学', '音乐', '美术'],
+    ['语文', '数学', '体育', '英语', '语文', '道法']
+ 
+  ];
+  var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五'] :
+    ['一', '二', '三', '四', '五'];
+  var day = new Date().getDay();
+  var courseType = [
+    [{index: '1', name: '09:00\n-\n09:35'}, 1],
+    [{index: '2', name: '09:55\n-\n10:30'}, 1],
+    [{index: '3', name: '10:50\n-\n11:25'}, 1],
+    [{index: '4', name: '14:00\n-\n14:35'}, 1],
+    [{index: '5', name: '14:55\n-\n15:30'}, 1],
+    [{index: '6', name: '15:50\n-\n16:25'}, 1]
+  ];
+  // 实例化(初始化课表)
+  var Timetable = new Timetables({
+    el: '#coursesTable',
+    timetables: courseList,
+    week: week,
+    timetableType: courseType,
+    highlightWeek: day,
+    gridOnClick: function (e) {
+      //alert(e.name + '  ' + e.week + ', 第' + e.index + '节课, 课长' + e.length + '节');
+      TencentMeeting(e.name);
+      //window.location.href="http://www.google.com";
+      //console.log(e);
+    },
+    styles: {
+      Gheight: 80
     }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  });
+
+  function TencentMeeting(classname) {
+    switch(classname){
+        case '语文':
+        window.open("https://meeting.tencent.com/p/8094133619");
+        break;
+        case '数学':
+        window.open("https://meeting.tencent.com/p/6234777717");
+        break;
+        case '英语':
+        window.open("https://meeting.tencent.com/p/4533761056");
+        break;
+        case '道法':
+        window.open("https://meeting.tencent.com/p/8094133619");
+        break;
+        case '自然':
+        window.open("https://meeting.tencent.com/p/5667513990");
+        break;
+        case '音乐':
+        window.open("https://meeting.tencent.com/p/6153255511");
+        break;
+        case '体育':
+        window.open("https://meeting.tencent.com/p/8550363995");
+        break;
+        case '美术':
+        window.open("https://meeting.tencent.com/p/9902975105");
+        break;
+        default:
     }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+
+  };
+
+  function getDate(){
+                //获取当前时间
+                var date = new Date();
+                //格式化为本地时间格式
+                var date1 = date.toLocaleString();
+                //获取div
+                var div1 = document.getElementById("times");
+                //将时间写入div
+                div1.innerHTML = date1;
+            };
+
+
+            setInterval("getDate()",1000);
+
+
 </script>
-
-
-  
-  
-
-  
-
-  
-
-  
-
 </body>
 </html>
