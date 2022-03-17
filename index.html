@@ -115,7 +115,7 @@
     this.el = document.querySelector(option.el);
     this.Timetables = option.timetables || [];
     this.week = option.week || [];
-    this.merge = typeof option.merge === 'boolean' ? option.merge : false;
+    this.merge = typeof option.merge === 'boolean' ? option.merge : true;
     this.TimetableType = option.timetableType || [];
     this.leftHandText = [];
     this.highlightWeek = option.highlightWeek || '';
@@ -123,7 +123,7 @@
     var styles = option.styles || {};
     this.leftHandWidth = styles.leftHandWidth || 60;
     this.Gheight = styles.Gheight || 48;
-    this.defaultPalette = ['#808A87', '#FF9912', '#4169E1', '#385E0F', '#082E54'];
+    this.defaultPalette = ['#808A87', '#FF9912', '#4169E1', '#385E0F', '#082E54',  '#9C661F', '#8A2BE2', '#4adbc3'];
     //this.defaultPalette = ['#808A87', '#FF9912', '#4169E1', '#385E0F', '#082E54',  '#9C661F', '#8A2BE2', '#4adbc3'];
     this.palette = (typeof styles.palette === 'boolean' && !styles.palett) ? false : (styles.palette || []).concat(this.defaultPalette)
     this._init();
