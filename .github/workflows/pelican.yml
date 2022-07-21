@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - gh-pages
-  build:
-      runs-on: ubuntu-latest
-      steps:
+      
+    runs-on: ubuntu-latest
+    steps:
       - uses: nelsonjchen/gh-pages-pelican-action@0.1.10
       with:
         # override the default `gh-pages` deployment branch
