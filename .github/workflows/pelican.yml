@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: nelsonjchen/gh-pages-pelican-action@0.1.5
+    - uses: nelsonjchen/gh-pages-pelican-action@0.1.8
       with:
         # override the default `gh-pages` deployment branch
         GH_PAGES_BRANCH: # optional, default is gh-pages
