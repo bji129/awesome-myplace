@@ -6,7 +6,7 @@
     # override the default `gh-pages` deployment branch
     GH_PAGES_BRANCH: # optional, default is gh-pages
     # specify the custom domain configured for the output branch
-    GH_PAGES_CNAME: # optional, default is none
+    GH_PAGES_CNAME: www.jideze.com # optional, default is none
     # override the default `pelicanconf.py` config file
     PELICAN_CONFIG_FILE: # optional, default is pelicanconf.py
     # override the default `content` content folder
