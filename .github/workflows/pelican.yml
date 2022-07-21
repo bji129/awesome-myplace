@@ -1,9 +1,9 @@
 name: GitHub Pages Pelican Build Action
 
 on:
-  pull:
+  push:
     branches:
-      - gh-pages
+      - master
 
 jobs:
   build:
