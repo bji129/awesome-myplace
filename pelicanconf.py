@@ -3,12 +3,12 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Brandon Ji'
-SITENAME = '阳春布德泽 惟吾德馨'
-SITEURL = 'www.jideze.com'
+SITENAME = '德泽 vs. 德馨'
+SITEURL = 'https://www.jideze.com'
+TIMEZONE = 'Asia/Shanghai'
 
 PATH = 'content'
 
-TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh-cn'
 
@@ -20,18 +20,21 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-友情链接 = (('博客工具', 'http://getpelican.com/'),
+LINKS = (('博客工具', 'http://getpelican.com/'),
          ('在线编辑', 'https://mermaid.live/'),
          ('UML画图', 'https://draw.io/'),
          ('七外课程表', 'http://www.jideze.com/others/QFL-13.html'),
          ('', '#'))
 
 # Social widget
-社交圈子 = (('代码库', 'http://github.com/bji129'),
+SOCIAL = (('代码库', 'http://github.com/bji129'),
           ('个人建立', 'https://cn.linkedin.com/in/bji129'),
           ('联系方式', 'https://about.me/bji129'))
 
-DEFAULT_PAGINATION = True
+DEFAULT_PAGINATION = 4
+
+FEED_ALL_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/{slug}.rss.xml'
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
