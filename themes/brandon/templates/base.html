@@ -28,8 +28,6 @@
                 {% for title, link in MENUITEMS %}
                     <li><a href="{{ link }}">{{ title }}</a></li>
                 {% endfor %}
-					<li><a href="others/QFL-13" alt ="阳春布德泽，万物生光辉！">长歌行</a></li>
-					<li><a href="#" alt="斯是陋室，惟吾德馨！">陋室铭</a></li>
                 {% if DISPLAY_PAGES_ON_MENU -%}
                 {% for pg in pages %}
                     <li{% if pg == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ pg.url }}">{{ pg.title }}</a></li>
@@ -40,6 +38,8 @@
                     <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
                 {% endfor %}
                 {% endif %}
+					<li><a href="others/QFL-13">Chang Ge Xing</a></li>
+					<li><a href="#">Lou Shi Ming</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
         {% block content %}
