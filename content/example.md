@@ -7,3 +7,6 @@ The source of this site can be seen at [this GitHub repository][repo].
 
 [action]: https://github.com/marketplace/actions/pelican-for-github-pages
 [repo]: https://github.com/nelsonjchen/pelican-action-demo
+
+:date: 2022-07-22 13:37
+:catgeory: Python

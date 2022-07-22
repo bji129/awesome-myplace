@@ -10,7 +10,7 @@ PATH = 'content'
 
 TIMEZONE = 'Asia/Shanghai'
 
-DEFAULT_LANG = 'en'
+DEFAULT_LANG = 'zh-cn'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -20,14 +20,14 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Refer to Pelican', 'http://getpelican.com/'),
-         ('My son', 'http://www.jideze.com/others/QFL-13.html'),
-         ('Thanks to my wife on this', '#'),)
+LINKS = (('博客支持', 'http://getpelican.com/'),
+         ('我儿子链接', 'http://www.jideze.com/others/QFL-13.html'),
+         ('谢谢，感恩！', '#'),)
 
 # Social widget
 SOCIAL = (('Github', 'http://github.com/bji129'),
           ('Linkedin', 'https://cn.linkedin.com/in/bji129'),
-          ('WeChat', 'bji129'),)
+          ('Whatsapps', 'bji129'),)
 
 DEFAULT_PAGINATION = True
 
