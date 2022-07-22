@@ -34,7 +34,7 @@ SOCIAL = (('代码库', 'http://github.com/bji129'),)
 
 DEFAULT_PAGINATION = 4
 
-THEME = 'notmyidea'
+THEME = 'themes/brandon'
 
 FEED_ALL_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_RSS = 'feeds/{slug}.rss.xml'
