@@ -25,12 +25,13 @@ LINKS = (('博客工具', 'http://getpelican.com/'),
          ('UML画图', 'https://draw.io/'),
          ('七外课程表', 'http://www.jideze.com/others/QFL-13.html'),
          ('动态数据表', 'https://datatables.net/'),
-         ('联系我', 'https://about.me/brandon.ji'),
          ('个人资料', 'https://cn.linkedin.com/in/bji129')
 )
 
 # Social widget
-SOCIAL = (('代码库', 'http://github.com/bji129'),)
+SOCIAL = (('代码库', 'http://github.com/bji129'),
+         ('联系我', 'https://about.me/brandon.ji'),
+         )
 
 DEFAULT_PAGINATION = 4
 
