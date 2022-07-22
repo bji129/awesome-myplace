@@ -1,9 +1,11 @@
-name: GitHub Pages Pelican Build Action
+name: Pelican site CI
 
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -11,15 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: rehanhaider/pelican-to-github-pages@v1.0.3
-      with:
-        # override the default `gh-pages` deployment branch
-        GH_PAGES_BRANCH: # optional, default is gh-pages
-        # specify the custom domain configured for the output branch
-        GH_PAGES_CNAME: www.jideze.com  # optional, default is none
-        # override the default `pelicanconf.py` config file
-        PELICAN_CONFIG_FILE: # optional, default is pelicanconf.py
-        # override the default `content` content folder
-        PELICAN_CONTENT_FOLDER: # optional, default is content
-        # setup the theme folder with package.json file, is required if you need install node modules
-        PELICAN_THEME_FOLDER: # optional1
+    - uses: actions/checkout@v2
+    - uses: nelsonjchen/gh-pages-pelican-action@0.1.5
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
