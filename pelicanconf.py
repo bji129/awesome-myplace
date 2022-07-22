@@ -20,14 +20,14 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('博客支持', 'http://getpelican.com/'),
-         ('我儿子链接', 'http://www.jideze.com/others/QFL-13.html'),
-         ('', '#'),
-         ('', '#'),
+友情链接 = (('博客工具', 'http://getpelican.com/'),
+         ('在线编辑', 'https://mermaid.live/'),
+         ('UML画图', 'https://draw.io/'),
+         ('七外课程表', 'http://www.jideze.com/others/QFL-13.html'),
          ('', '#'))
 
 # Social widget
-SOCIAL = (('代码库', 'http://github.com/bji129'),
+社交圈子 = (('代码库', 'http://github.com/bji129'),
           ('个人建立', 'https://cn.linkedin.com/in/bji129'),
           ('联系方式', 'https://about.me/bji129'))
 
