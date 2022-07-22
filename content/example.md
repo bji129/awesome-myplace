@@ -1,7 +1,7 @@
 Title: Example Site
 Date: 2022-07-22 13:37
 Modified: 2022-07-22 13:38
-Catgeory: Python
+Category: 首页
 Tags: pelican
 Authors: Brandon Ji
 Summary: This is sample blog page
