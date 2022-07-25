@@ -4,7 +4,7 @@ Modified: 2022-07-22 13:38
 Category: news
 Tags: pelican
 Authors: Brandon Ji
-Summary: Pelican 4.7 released
+Summary: Pelican 4.7 is now available. please see the How to Get Help section of the documentation.
 
 Pelican 4.7 is now available. This new release includes the following enhancements, fixes, and tweaks:
 
