@@ -3,88 +3,33 @@
   {
     "children": [
     {
-      {
-        "name": "Agile Delivery Approach",
-        "type": "url",
-        "url": "https://jideze.com/"
-      },
-	  {
-        "name": "Access Model and Review",
-        "type": "url",
-        "url": "https://jideze.com/"
-      },
-	  {
-        "name": "Conceptual & Logical Solution Architecture",
-        "type": "url",
-        "url": "https://jideze.com/"
-      },
-      {
-        "name": "SDLC Document Management",
-        "type": "url",
-        "url": "https://jideze.com/"
-      }],
-      "name": "Solution Lifecycle Management",
+	  "children": [
+		{
+		  "name": "Agile Delivery Approach",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "Access Model and Review",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "Conceptual & Logical Solution Architecture",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "SDLC Document Management",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		}],
+	  "name": "Solution Lifecycle Management",
       "type": "folder"
-    },
-    {
-      {
-        "name": "Archive Requirements Specification and Test Plan",
-        "type": "url",
-        "url": "https://jideze.com/"
-      },
-      {
-        "name": "Archive User Acceptance",
-        "type": "url",
-        "url": "http://pgp.mit.edu/"
-      }],
-      "name": "Application Retirement and Archive",
-      "type": "folder"
-    }],
-    "name": "Solution Lifecycle",
+	}],
+    "name": "Solution Lifecycle Management",
     "type": "folder"
-  },
-  {
-    "children": [
-    {
-      "children": [
-      {
-        "name": "Infrastructure Qualification",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "Server Room Qualification",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "Manufacturing Site Computerized System Recovery Verification",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "IT Backup and Recovery",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "Disaster Recovery Management Standards",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "Benchtop Management and Support",
-        "type": "url",
-        "url": "https://jideze.com"
-      },
-      {
-        "name": "Storage Specification",
-        "type": "url",
-        "url": "https://jideze.com"
-      }],
-      "name": "Infrastructure Lifecycle Management",
-      "type": "folder"
-    }],
-    "name": "Infrastructure Lifecycle",
-    "type": "folder"
-  },
+  }],
+  "name": "Solution Lifecycle",
+  "type": "folder"
+}
