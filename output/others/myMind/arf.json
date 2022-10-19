@@ -5,7 +5,7 @@
     {
 	  "children": [
 		{
-		  "name": "IT-SOP-100, Solution Lifecycle Management",
+		  "name": "Solution Lifecycle Management",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
@@ -14,13 +14,13 @@
 		  "type": "url",
 		  "url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-100, Solution Lifecycle Management",
+	  "name": "Solution Lifecycle Management",
       "type": "folder"
 	},
 	{
 	  "children": [
 		{
-		  "name": "IT-SOP-100, Solution Lifecycle Management",
+		  "name": "Solution Lifecycle Management",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
@@ -29,10 +29,10 @@
 		  "type": "url",
 		  "url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-101, Application Retirement and Archive",
+	  "name": "Application Retirement and Archive",
       "type": "folder"
 	}],
-    "name": "IT-POL-1, Solution Lifecycle",
+    "name": "Solution Lifecycle",
     "type": "folder"
   },
   {
@@ -49,7 +49,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-202, Infrastructure Qualification",
+	  "name": "Infrastructure Qualification",
       "type": "folder"
 	},
 	{
@@ -64,7 +64,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-203, Server Room Qualification",
+	  "name": "Server Room Qualification",
       "type": "folder"
 	},
 	{
@@ -79,7 +79,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-204, Manufacturing Site Computerized System Recovery Verification",
+	  "name": "Manufacturing Site Computerized System Recovery Verification",
       "type": "folder"
 	},
 	{
@@ -94,7 +94,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-205, IT Backup and Recovery",
+	  "name": "IT Backup and Recovery",
       "type": "folder"
 	},
 	{
@@ -109,7 +109,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-206, Disaster Recovery Management Standards",
+	  "name": "Disaster Recovery Management Standards",
       "type": "folder"
 	},
 	{
@@ -124,7 +124,7 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-207, Benchtop Management and Support",
+	  "name": "Benchtop Management and Support",
       "type": "folder"
 	},
 	{
@@ -139,10 +139,10 @@
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "IT-SOP-208, Storage Specification",
+	  "name": "Storage Specification",
       "type": "folder"
 	}],
-    "name": "IT-POL-2, Infrastructure Lifecycle",
+    "name": "Infrastructure Lifecycle",
     "type": "folder"
   },
   {
@@ -172,7 +172,7 @@
 	  "name": "Solution Lifecycle Management",
       "type": "folder"
 	}],
-    "name": "IT-POL-3, Information Technology Service Management",
+    "name": "Information Technology Service Management",
     "type": "folder"
   },
   {
@@ -202,7 +202,7 @@
 	  "name": "Solution Lifecycle Management",
       "type": "folder"
 	}],
-    "name": "IT-POL-4, Cybersecurity/ Protection of Digital Resources and Information documents",
+    "name": "Cybersecurity/ Protection of Digital Resources and Information documents",
     "type": "folder"
   }],
   "name": "Solution Lifecycle",
