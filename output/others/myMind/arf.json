@@ -45,9 +45,29 @@
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "Business Intelligence Solution Delivery",
 		  "type": "url",
-			"url": "https://jideze.com/"
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "SharePoint Web Application Development and Deployment",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "children": [
+		    {
+			  "name": "Access Model and Review Template",
+			  "type": "url",
+			  "url": "https://jideze.com/"
+			},
+			{
+			  "name": "Conceptual & Logical Solution Architecture Template",
+			  "type": "url",
+			  "url": "https://jideze.com/"
+			}],
+		  "name": "SDLC Document Management",
+		  "type": "folder"
 		}],
 	  "name": "Infrastructure Qualification",
       "type": "folder"
