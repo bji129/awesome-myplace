@@ -5,164 +5,238 @@
     {
 	  "children": [
 		{
-		  "name": "Solution Lifecycle Management",
+		  "name": "[WI]Agile Delivery Approach",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
-		  "type": "url",
-		  "url": "https://jideze.com/"
-		}],
-	  "name": "Solution Lifecycle Management",
-      "type": "folder"
-	},
-	{
-	  "children": [
-		{
-		  "name": "Solution Lifecycle Management",
+		  "name": "[WI]Business Intelligence Solution Delivery",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
-		  "type": "url",
-		  "url": "https://jideze.com/"
-		}],
-	  "name": "Application Retirement and Archive",
-      "type": "folder"
-	}],
-    "name": "Solution Lifecycle",
-    "type": "folder"
-  },
-  {
-  "children": [
-    {
-	  "children": [
-		{
-		  "name": "Agile Delivery Approach",
-		  "type": "url",
-	      "url": "https://jideze.com/"
-		},
-		{
-		  "name": "Business Intelligence Solution Delivery",
-		  "type": "url",
-	      "url": "https://jideze.com/"
-		},
-		{
-		  "name": "SharePoint Web Application Development and Deployment",
+		  "name": "[WI]SharePoint Web Application Development and Deployment",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
 		  "children": [
 		    {
-			  "name": "Access Model and Review Template",
+			  "name": "[TMP]Access Model and Review Template",
 			  "type": "url",
 			  "url": "https://jideze.com/"
 			},
 			{
-			  "name": "Conceptual & Logical Solution Architecture Template",
+			  "name": "[TMP]Conceptual & Logical Solution Architecture Template",
 			  "type": "url",
 			  "url": "https://jideze.com/"
 			}],
-		  "name": "SDLC Document Management",
+		  "name": "[OCD]SDLC Document Management",
 		  "type": "folder"
 		}],
-	  "name": "Infrastructure Qualification",
+	  "name": "[SOP]Solution Lifecycle Management",
       "type": "folder"
 	},
 	{
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[TMP]Archive Requirements Specification and Test Plan Template",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "[TMP]Archive User Acceptance Template",
 		  "type": "url",
-			"url": "https://jideze.com/"
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Application Retirement Work Plan Template",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Application Divestiture Work Plan Template",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Application Retirement Divestiture Summary Template",
+		  "type": "url",
+		  "url": "https://jideze.com/"
 		}],
-	  "name": "Server Room Qualification",
+	  "name": "[SOP]Application Retirement and Archive",
+      "type": "folder"
+	}],
+    "name": "[POL]Solution Lifecycle",
+    "type": "folder"
+  },
+  {
+  "children": [
+    {
+	  "children": [
+		{
+		  "name": "[WI]Server Qualification",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Database Qualification",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Mass Storage Qualification",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Infrastructure and Middleware Application Qualification",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Network Device Qualification Verification",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "children": [
+		    {
+			  "name": "[TMP]Qualification Application Periodic Review Template",
+			  "type": "url",
+			  "url": "https://jideze.com/"
+			},
+			{
+			  "name": "[TMP]Infrastructure Application Qualification Plan",
+			  "type": "url",
+			  "url": "https://jideze.com/"
+			},
+			{
+			  "name": "[TMP]Infrastructure Application Qualification Summary Report",
+			  "type": "url",
+			  "url": "https://jideze.com/"
+			}],
+		  "name": "[WI]Periodic Review of Qualified Applications",
+		  "type": "folder"
+		}],
+	  "name": "[SOP]Infrastructure Qualification",
       "type": "folder"
 	},
 	{
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[WI]Process for Qualifying Server Rooms",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "[OCD]Creating Audit Issue Records for Server Room Remediation",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Server Room Checklist",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Third Party Data Center Assessment",
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
+	  "name": "[SOP]Server Room Qualification",
+      "type": "folder"
+	},
+	{
 	  "name": "Manufacturing Site Computerized System Recovery Verification",
+      "type": "url",
+	  "url": "https://jideze.com"
+	},
+	{
+	  "children": [
+		{
+		  "name": "[WI]Hosting Services – Backup & Recovery Plan in Response to a Cyber Incident",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]IT Backup and Recovery",
       "type": "folder"
 	},
 	{
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[WI]IT Service Continuity Management (ITSCM) Disaster Recovery Plan",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "[TMP]Technical Recovery Guide Template",
 		  "type": "url",
 			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Data Room Weather Preparedness Plan",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]DR Exercise Management Plan",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Disaster Recovery Exercise Report Template",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Onsite Application Recovery (OAR) Site Recovery",
+		  "type": "url",
+	      "url": "https://jideze.com/"
 		}],
-	  "name": "IT Backup and Recovery",
+	  "name": "[SOP]Disaster Recovery Management Standards",
       "type": "folder"
 	},
 	{
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[WI]Benchtop Qualification",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "[WI]Image and Change Management for Benchtop Computers",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Systems Management for Controlled Benchtop Computers",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Automated Software Deployment for Benchtop Computers",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Administration of Altiris Client Management Suite",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]FileWatch Deployment and Configuration Guide",
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "Disaster Recovery Management Standards",
+	  "name": "[SOP]Benchtop Management and Support",
       "type": "folder"
 	},
 	{
-	  "children": [
-		{
-		  "name": "Agile Delivery Approach",
-		  "type": "url",
-	      "url": "https://jideze.com/"
-		},
-		{
-		  "name": "SDLC Document Management",
-		  "type": "url",
-			"url": "https://jideze.com/"
-		}],
-	  "name": "Benchtop Management and Support",
-      "type": "folder"
-	},
-	{
-	  "children": [
-		{
-		  "name": "Agile Delivery Approach",
-		  "type": "url",
-	      "url": "https://jideze.com/"
-		},
-		{
-		  "name": "SDLC Document Management",
-		  "type": "url",
-			"url": "https://jideze.com/"
-		}],
-	  "name": "Storage Specification",
+	  "name": "[SOP]Storage Specification",
       "type": "folder"
 	}],
-    "name": "Infrastructure Lifecycle",
+    "name": "[POL]Infrastructure Lifecycle",
     "type": "folder"
   },
   {
@@ -170,29 +244,99 @@
     {
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[OCD]Root Cause Analysis (RCA) Tools",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "Access Model and Review",
+		  "name": "[OCD]Managing Priority 1 Problems",
 		  "type": "url",
 		  "url": "https://jideze.com/"
 		},
 		{
-		  "name": "Conceptual & Logical Solution Architecture",
+		  "name": "[OCD]Problem Management – General",
 		  "type": "url",
 		  "url": "https://jideze.com/"
-		},
-		{
-		  "name": "SDLC Document Management",
-		  "type": "url",
-			"url": "https://jideze.com/"
 		}],
-	  "name": "Solution Lifecycle Management",
+	  "name": "[SOP]Problem Management",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[WI]Managing Changes in ServiceNow",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "children": [
+		    {
+			  "name": "[TMP]Backend Data Changes Templates",
+			  "type": "url",
+	          "url": "https://jideze.com/"
+			}],
+		  "name": "[WI]Backend Data Changes",
+		  "type": "folder"
+		}],
+	  "name": "[SOP]Change Control and Release Management",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[OCD]Incident Prioritization",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Unplanned Outage and Degradation for Incidents",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Incident Management Lifecycle",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Incident Management Monitoring Controls",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]Incident Management",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[OCD]Managing Knowledge Articles",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]Knowledge Management",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[OCD]Managing and Closing Request Tasks",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Request Management Monitoring Controls",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]BMS ServiceNow Aging Tickets Monitoring Controls",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]Request Management",
       "type": "folder"
 	}],
-    "name": "Information Technology Service Management",
+    "name": "[POL]Information Technology Service Management",
     "type": "folder"
   },
   {
@@ -200,31 +344,207 @@
     {
 	  "children": [
 		{
-		  "name": "Agile Delivery Approach",
+		  "name": "[WI]PC and Mobile Asset Management",
 		  "type": "url",
 	      "url": "https://jideze.com/"
 		},
 		{
-		  "name": "Access Model and Review",
+		  "name": "[WI]Developer Privileged Access",
 		  "type": "url",
 		  "url": "https://jideze.com/"
 		},
 		{
-		  "name": "Conceptual & Logical Solution Architecture",
+		  "name": "[WI]Automated Access Review Support Process",
 		  "type": "url",
 		  "url": "https://jideze.com/"
 		},
 		{
-		  "name": "SDLC Document Management",
+		  "name": "[WI]Campus Based Hard Drive Collection",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Electronic Discovery Support",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]Data Protection & Insider Risk Monitoring",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[WI]BMS-GPS Security Assurance Capability",
 		  "type": "url",
 			"url": "https://jideze.com/"
 		}],
-	  "name": "Solution Lifecycle Management",
+	  "name": "[SOP]Protection of Digital Resources and Information",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[WI]ServiceNow Vulnerability Response",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]Management of Infrastructure Security Vulnerabilities",
+      "type": "folder"
+	},
+    {
+	  "name": "[SOP]Management of Application Security Vulnerabilities",
+      "type": "folder"
+	},
+    {
+	  "name": "[SOP]Extracting Business Data",
+      "type": "folder"
+	},
+    {
+	  "name": "[SOP]Information Risk Management",
       "type": "folder"
 	}],
-    "name": "Cybersecurity/ Protection of Digital Resources and Information documents",
+    "name": "[POL]Cybersecurity/ Protection of Digital Resources and Information documents",
+    "type": "folder"
+  },
+  {
+  "children": [
+    {
+	  "children": [
+		{
+		  "name": "[WI]IT Procedural Document Lifecycle Management",
+		  "type": "url",
+	      "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]IT Glossary",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]ITQM PD QC Checklist",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]IT PD Retirement Index & Mapping",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Authors and Reviewers Guidance for IT Procedural Documents",
+		  "type": "url",
+		  "url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]IT Procedural Documents",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[WI]IT Employee Job Profiles",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Overdue Training Reports",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Updating the IT Policy Portal",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]IT Training",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]IT Training eLearning SCORM Object",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]IT Training ADHOC Reports",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]How to setup and EJP",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]IT Controlled Training",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[TMP]Supplier Information Technology General Controls (ITGC)",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Supplier 21 CFR Part 11 Product Compliance Questionnaire",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Supplier Data Center Audit Questionnaire",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Supplier Intake Form Template",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		}],
+	  "name": "[SOP]ITQM Supplier Assessments",
+      "type": "folder"
+	},
+    {
+	  "name": "[SOP]Creating and Managing Periodic Reviews in ServiceNow",
+      "type": "folder"
+	},
+    {
+	  "children": [
+		{
+		  "name": "[TMP]Governance, Risk & Compliance (GRC) Policy & Compliance Issue Management",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Managing Data Integrity Records in Governance, Risk and Compliance (GRC)",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Computer System Validation Deferred Actions",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Governance, Risk and Compliance (GRC) Vendor Risk Management",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[OCD]Updating and Closing Governance, Risk & Compliance (GRC) Records",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		},
+		{
+		  "name": "[TMP]Governance Risk & Compliance (GRC) Vendor Risk Management",
+		  "type": "url",
+			"url": "https://jideze.com/"
+		}],
+	  "name": "IT Audit Support",
+      "type": "folder"
+	}],
+    "name": "[POL]Information Technology Controls Framework",
     "type": "folder"
   }],
-  "name": "Solution Lifecycle",
+  "name": "Intelligent Technology/Management",
   "type": "folder"
 }
